@@ -43,5 +43,13 @@ public class GameTile
 	{
 		this.isLocked=false;
 	}
+	public void changeLabel(int oid)
+	{
+		if (oid==1) {//if even(player 2 O's)
+    		gameButton.setText("O");
+    	}else {
+    		gameButton.setText("X");
+    	}
+	}
 	
 }
