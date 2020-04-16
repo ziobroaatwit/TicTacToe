@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="557.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="557.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <AnchorPane layoutX="-47.0" layoutY="-93.0" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -46,15 +46,15 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="193.0" prefWidth="148.0" text="Button" />
-            <Button mnemonicParsing="false" prefHeight="139.0" prefWidth="148.0" text="Button" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="192.0" prefWidth="147.0" text="Button" GridPane.columnIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="467.0" text="Button" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="465.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="345.0" prefWidth="147.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="133.0" prefWidth="266.0" text="Button" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="133.0" prefWidth="233.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="133.0" prefWidth="367.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="TopLeft" mnemonicParsing="false" onAction="#displayTL" prefHeight="193.0" prefWidth="148.0" text="Button" />
+            <Button fx:id="TopMid" mnemonicParsing="false" onAction="#displayTM" prefHeight="139.0" prefWidth="148.0" text="Button" GridPane.columnIndex="1" />
+            <Button fx:id="TopRight" mnemonicParsing="false" onAction="#displayTR" prefHeight="192.0" prefWidth="147.0" text="Button" GridPane.columnIndex="2" />
+            <Button fx:id="MidLeft" mnemonicParsing="false" onAction="#displayML" prefHeight="134.0" prefWidth="467.0" text="Button" GridPane.rowIndex="1" />
+            <Button fx:id="Mid" mnemonicParsing="false" onAction="#displayM" prefHeight="134.0" prefWidth="465.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="MidRight" mnemonicParsing="false" onAction="#displayMR" prefHeight="345.0" prefWidth="147.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="BottomLeft" mnemonicParsing="false" onAction="#displayBL" prefHeight="133.0" prefWidth="266.0" text="Button" GridPane.rowIndex="2" />
+            <Button fx:id="BottomMid" mnemonicParsing="false" onAction="#displayBM" prefHeight="133.0" prefWidth="233.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="BottomRight" mnemonicParsing="false" onAction="#displayBR" prefHeight="133.0" prefWidth="367.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
