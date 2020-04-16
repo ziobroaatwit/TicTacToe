@@ -25,6 +25,7 @@ public class MainController extends Application implements Initializable {
 	        Scene scene = new Scene(root);
 	        TicTacToe.setScene(scene);
 	        TicTacToe.setTitle("Tic Tac Toe");
+	        TicTacToe.setResizable(false);
 	        TicTacToe.show();
 		} catch(Exception e) {
 			e.printStackTrace();
