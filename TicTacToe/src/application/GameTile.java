@@ -21,19 +21,20 @@ public class GameTile
 {
 	@FXML
 	protected Button gameButton;
+	
 	protected int ownerID;
 	protected boolean isLocked;
 	
 	public GameTile(Button s)
 	{
-		this.ownerID=-1;
 		this.gameButton=s;
+		this.ownerID=-1;
 		this.isLocked=false;
 	}
 	public void changeOID(int oid)
 	{
 		this.ownerID=oid;
-		lock();
+		this.changeLabel(getOID());
 	}
 	public void lock()
 	{
@@ -43,6 +44,10 @@ public class GameTile
 	{
 		this.isLocked=false;
 	}
+	public int getOID()
+	{
+		return this.ownerID;
+	}
 	public void changeLabel(int oid)
 	{
 		if (oid==1) {//if even(player 2 O's)
@@ -50,6 +55,17 @@ public class GameTile
     	}else {
     		gameButton.setText("X");
     	}
+		lock();
+	}
+	public void reset()
+	{
+		this.ownerID=-1;
+		this.isLocked=false;
+		this.gameButton.setText("-");
+	}
+	public Button getButton()
+	{
+		return this.gameButton;
 	}
 	
 }
