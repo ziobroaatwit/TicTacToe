@@ -113,7 +113,7 @@ public class MainController extends Application implements Initializable {
 	    @FXML
 	    private Button BottomRight; //8 
 	    
-	    public int turn = 0;//counts turns
+	    public int turn = 0; //counts turns
 	   
 	    @FXML
 	    void displayTL(ActionEvent event) {
