@@ -19,22 +19,26 @@ import javafx.stage.Stage;
 
 public class GameTile 
 {
-	@FXML
-	protected Button gameButton;
 	
 	protected int ownerID;
+	protected int switchID;
 	protected boolean isLocked;
+	protected String name;
 	
-	public GameTile(Button s)
+	public GameTile(String n,int d)
 	{
-		this.gameButton=s;
+		this.switchID=d;
+		this.name=n;
 		this.ownerID=-1;
 		this.isLocked=false;
 	}
 	public void changeOID(int oid)
 	{
-		this.ownerID=oid;
-		this.changeLabel(getOID());
+		if(this.getLock()==false)
+		{
+			this.ownerID=oid;
+		}
+		lock();
 	}
 	public void lock()
 	{
@@ -44,28 +48,27 @@ public class GameTile
 	{
 		this.isLocked=false;
 	}
+	public boolean getLock()
+	{
+		return this.isLocked;
+	}
 	public int getOID()
 	{
 		return this.ownerID;
 	}
-	public void changeLabel(int oid)
+	public String getName()
 	{
-		if (oid==1) {//if even(player 2 O's)
-    		gameButton.setText("O");
-    	}else {
-    		gameButton.setText("X");
-    	}
-		lock();
+		return this.name;
 	}
 	public void reset()
 	{
 		this.ownerID=-1;
 		this.isLocked=false;
-		this.gameButton.setText("-");
 	}
-	public Button getButton()
+	public String toString()
 	{
-		return this.gameButton;
+		return String.format("Name: %s, OID: %d, Lock: %b",this.getName(),this.getOID(),this.getLock());
 	}
+
 	
 }
