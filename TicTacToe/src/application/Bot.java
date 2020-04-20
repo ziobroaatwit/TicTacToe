@@ -17,12 +17,9 @@ public class Bot implements Player
 		placeBoard=currentBoard;
 		boardManipulator decision = new boardManipulator(placeBoard);
 		int SID=0;
-		int score=decision.minimax(0, 1);
-		Move oMove= new Move(decision.getMove(),score);
-		SID=oMove.getIndex();
-		//System.out.println(decision.move);
-		//System.out.println(oMove.toString());
-		//int SID=oMove.getIndex();		
+		decision.decideMove();
+		Move oMove= new Move(decision.getMove());
+		SID=oMove.getIndex();	
 		return SID;
 	}
 	@Override

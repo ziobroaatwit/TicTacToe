@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class boardManipulator
 {
@@ -62,90 +63,26 @@ public class boardManipulator
 			return true;
 
 	}
+	public void decideMove()
+	{
+		ArrayList<Integer> avInd = avInd(this.board);
+		Random rand = new Random();
+		if(avInd.size()>1)
+		{
+		int index=rand.nextInt(avInd.size());
+		this.move=avInd.get(index);
+		}
+		else
+		{
+			this.move=-2;
+		}
+	}
 	public void debugBoardPrint() //Prints out all GameTiles in the board.
 	{
 		for(int i=0;i<board.length;i++)
 		{
 			System.out.println(board[i].toString());
 		}
-	}
-	public int minimax(int depth,int turn) //MinMax Algorithm for Deciding the Next Move for the AI.
-	{
-		int min=Integer.MIN_VALUE;
-		int max=Integer.MAX_VALUE;
-		ArrayList<Integer> avInd = avInd(board);
-		if(playerWon(1))
-		{
-			return 1;
-		}
-		if(playerWon(0))
-		{
-			return -1;
-		}
-		if(avInd.isEmpty())
-		{
-			return 0;
-		}
-		for(int i=0;i<avInd.size();i++)
-		{
-			System.out.println(avInd);
-			int index = avInd.get(i);
-			System.out.println("INDEX: "+index);
-			if(turn==1)
-			{
-				placeMove(index,1);
-				int currentScore = minimax(depth+1,0);
-				max=Math.max(currentScore, max);
-				if(depth==0)
-				{
-					System.out.println("Computer Score for Position "+index+" = "+currentScore);
-				}
-				if(currentScore>=0)
-				{
-					if(depth==0)
-					{
-						this.move=index;
-					}
-				}
-				if(currentScore==1)
-				{
-					board[index].changeOID(-1);
-					break;
-				}
-				if(i==avInd.size()-1 && max<0)
-				{
-					if(depth==0)
-					{
-						this.move=index;
-					}
-				}
-				
-			}
-			else if(turn==0)
-			{
-				placeMove(index,0);
-				int currentScore = minimax(depth+1,1);
-				min = Math.min(currentScore, min);
-				if(min == -1)
-				{
-					board[i].changeOID(-1);
-					break;
-				}
-				
-			}
-			board[i].changeOID(-1);
-		}
-		if(turn == 1)
-		{
-			System.out.println("MAX: "+max);
-			return max;
-		}
-		else
-		{
-			System.out.println("MIN: "+min);
-			return min;
-		}
-		
 	}
 	public int getMove()
 	{

@@ -19,8 +19,6 @@ import javafx.stage.Stage;
 
 public class GameTile 
 {
-	//@FXML
-	//protected Button gameButton;
 	
 	protected int ownerID;
 	protected int switchID;
@@ -62,15 +60,6 @@ public class GameTile
 	{
 		return this.name;
 	}
-	/*public void changeLabel(int oid)
-	{
-		if (oid==1) {//if even(player 2 O's)
-    		gameButton.setText("O");
-    	}else {
-    		gameButton.setText("X");
-    	}
-		lock();
-	}*/
 	public void reset()
 	{
 		this.ownerID=-1;
@@ -80,9 +69,6 @@ public class GameTile
 	{
 		return String.format("Name: %s, OID: %d, Lock: %b",this.getName(),this.getOID(),this.getLock());
 	}
-	/*public Button getButton()
-	{
-		return this.gameButton;
-	}*/
+
 	
 }

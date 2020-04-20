@@ -9,6 +9,10 @@ public class Move
 		this.index=i;
 		this.score=s;
 	}
+	public Move(int i)
+	{
+		this.index=i;
+	}
 	public int getScore()
 	{
 		return this.score;

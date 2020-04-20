@@ -37,8 +37,29 @@ public class MainController extends Application implements Initializable {
 	int gameOver=0;
 	int pTurn=0;
 	
-	
-	
+	public void game()
+	{
+			changeTurn();
+			System.out.println(AI.getName()+" is thinking...");
+    		int move=AI.moveCheck(board);
+    		if(move!=-2)
+    		{
+    		System.out.println("My next move will be: "+move);
+    		board[move].changeOID(AI.getOID());
+    		}
+    		buttonRedraw();
+	}
+    public void changeTurn()
+    {
+    	if(pTurn==0)
+    	{
+    		pTurn=1;
+    	}
+    	else
+    	{
+    		pTurn=0;
+    	}
+    }
 	
 	@Override
 	public void start(Stage TicTacToe) {
@@ -97,15 +118,16 @@ public class MainController extends Application implements Initializable {
 	    @FXML
 	    void displayTL(ActionEvent event) {
 	    	turn++;//turn being taken
-	    	
-	    	if (pTurn==1) { //CPU=1, PLAYER=0
-	    		TopLeft.setText("O");
-	    	}else {
-	    		TopLeft.setText("X");
+	    	//CPU=1, PLAYER=0
+	    	if (pTurn==1) 
+	    	{ 
+	    		
+	    	}
+	    	else {
 	    		board[0].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    	
 	    }
@@ -114,14 +136,14 @@ public class MainController extends Application implements Initializable {
 	    void displayBL(ActionEvent event) {
 	    	turn++;//turn being taken
 	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		BottomLeft.setText("O");
+	    	if (pTurn==1) {
+
 	    	}else {
-	    		BottomLeft.setText("X");
+
 	    		board[6].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    	
 	    }
@@ -130,30 +152,27 @@ public class MainController extends Application implements Initializable {
 	    void displayBM(ActionEvent event) {
 	    	turn++;//turn 1 is being taken
 	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		BottomMid.setText("O");
-	    	}else {
-	    		BottomMid.setText("X");
+	    	if (pTurn==1) {
+	    		
+	    	}
+	    		else{
 	    		board[7].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
-	    		
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
 	    @FXML
 	    void displayBR(ActionEvent event) {
 	    	turn++;//turn 1 is being taken
-	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		BottomRight.setText("O");
+	    	if (pTurn==1) {
 	    	}else {
-	    		BottomRight.setText("X");
+
 	    		board[8].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
@@ -161,14 +180,12 @@ public class MainController extends Application implements Initializable {
 	    void displayM(ActionEvent event) {
 	    	turn++;//turn 1 is being taken
 	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		Mid.setText("O");
+	    	if (pTurn==1) {
 	    	}else {
-	    		Mid.setText("X");
 	    		board[4].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
@@ -176,14 +193,13 @@ public class MainController extends Application implements Initializable {
 	    void displayML(ActionEvent event) {
 	    	turn++;//turn 1 is being taken
 	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		MidLeft.setText("O");
+	    	if (pTurn==1) {
+
 	    	}else {
-	    		MidLeft.setText("X");
 	    		board[3].changeOID(0);
 	    		changeTurn();
-	    		debugBoard();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
@@ -192,13 +208,11 @@ public class MainController extends Application implements Initializable {
 	    	turn++;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {//if even(player 2 O's)
-	    		MidRight.setText("O");
 	    	}else {
-	    		MidRight.setText("X");
 	    		board[5].changeOID(0);
-	    		debugBoard();
 	    		changeTurn();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
@@ -207,13 +221,11 @@ public class MainController extends Application implements Initializable {
 	    	turn++;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {//if even(player 2 O's)
-	    		TopMid.setText("O");
 	    	}else {
-	    		TopMid.setText("X");
 	    		board[1].changeOID(0);
-	    		debugBoard();
 	    		changeTurn();
-	    		gameLoop();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 
@@ -221,24 +233,12 @@ public class MainController extends Application implements Initializable {
 	    void displayTR(ActionEvent event) {
 	    	turn++;//turn 1 is being taken
 	    	
-	    	if (pTurn==1) {//if even(player 2 O's)
-	    		TopRight.setText("O");
+	    	if (pTurn==1) {
 	    	}else {
-	    		TopRight.setText("X");
 	    		board[2].changeOID(0);
-	    		debugBoard();
 	    		changeTurn();
-	    		gameLoop();
-	    	}
-	    }
-	    void gameLoop()
-	    {
-	    	if(pTurn==1)
-	    	{
-	    		int move=AI.moveCheck(board);
-	    		System.out.println("My next move will be: "+move);
-	    		board[move].changeOID(AI.getOID());
-	    		changeTurn();
+	    		game();
+	    		buttonRedraw();
 	    	}
 	    }
 	    void debugBoard()
@@ -248,16 +248,52 @@ public class MainController extends Application implements Initializable {
 	        	System.out.println(board[i].toString());
 	        }
 	    }
-	    void changeTurn()
-	    {
-	    	if(pTurn==0)
-	    	{
-	    		pTurn=1;
-	    	}
-	    	else if(pTurn==1)
-	    	{
-	    		pTurn=0;
-	    	}
-	    }
+		public void buttonRedraw()
+		{	
+			if(board[0].getOID()==0)
+				TopLeft.setText("X");
+				else if(board[0].getOID()==1)
+				TopLeft.setText("O");
+			
+			if(board[1].getOID()==0)
+				TopMid.setText("X");
+				else if(board[1].getOID()==1)
+				TopMid.setText("O");
+			
+			if(board[2].getOID()==0)
+				TopRight.setText("X");
+				else if(board[2].getOID()==1)
+				TopRight.setText("O");
+			
+			if(board[3].getOID()==0)
+				MidLeft.setText("X");
+				else if(board[3].getOID()==1)
+				MidLeft.setText("O");
+			
+			if(board[4].getOID()==0)
+				Mid.setText("X");
+				else if(board[4].getOID()==1)
+				Mid.setText("O");
+			
+			if(board[5].getOID()==0)
+				MidRight.setText("X");
+				else if(board[5].getOID()==1)
+				MidRight.setText("O");
+			
+			if(board[6].getOID()==0)
+				BottomLeft.setText("X");
+				else if(board[6].getOID()==1)
+				BottomLeft.setText("O");
+			
+			if(board[7].getOID()==0)
+				BottomMid.setText("X");
+				else if(board[7].getOID()==1)
+				BottomMid.setText("O");
+			
+			if(board[8].getOID()==0)
+				BottomRight.setText("X");
+				else if(board[8].getOID()==1)
+				BottomRight.setText("O");		
+		}
 	
 }
