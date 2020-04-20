@@ -11,7 +11,7 @@ public class Bot implements Player
 		this.id=1;
 		this.name=n;
 	}
-	public int moveCheck(GameTile[] currentBoard)
+	public int moveCheck(GameTile[] currentBoard) //This grabs a valid move using boardManipulator then sends it back to mainController so that the AI can manipulate the board.
 	{
 		GameTile[] placeBoard = new GameTile[9];
 		placeBoard=currentBoard;

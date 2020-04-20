@@ -63,7 +63,7 @@ public class boardManipulator
 			return true;
 
 	}
-	public void decideMove()
+	public void decideMove()  //Currently just randomly generates moves. 
 	{
 		ArrayList<Integer> avInd = avInd(this.board);
 		Random rand = new Random();
