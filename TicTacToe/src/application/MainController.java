@@ -79,6 +79,7 @@ public class MainController extends Application implements Initializable {
 	{
 		if(gameOver==0)	
 		{
+			turn+=1;
 			changeTurn();
 			System.out.println(AI.getName()+" is thinking...");
     		int move=AI.moveCheck(board);
@@ -109,13 +110,16 @@ public class MainController extends Application implements Initializable {
     }
     /**
      * the getGameOver method retrieves whether a win state has occurred on the last turn.
-     * @return true or false from boardManipulator.playerWon()
+     * @return true or false from boardManipulator.gameOver()
      */
     public boolean getGameOver() //gets gameOver using the boardManipulator class
     {
     	boardManipulator current = new boardManipulator(board);
     	return current.gameOver();
     }
+    /**
+     * Checks who actually won the game or if it was a draw.
+     */
     public void whoWon()
     {
     	boardManipulator current = new boardManipulator(board);
@@ -134,13 +138,16 @@ public class MainController extends Application implements Initializable {
     }
     /**
      * statusCheck simply grabs the result of the getGameOver method and sets the gameOver flag if the game is infact, over.
+     *  Then alters the appropriate text fields if the game is over.
      */
     public void statusCheck() //Checks if gameOver is true and sets the game to GameOver if it is.
     {
     	if(getGameOver()==true)
     	{
     		gameOver=1;
+    		whoWon();
     		Status.setText("Game Over!");
+    		Winner.setText(editWinner());
     	}
     }
 	/**
@@ -204,10 +211,16 @@ public class MainController extends Application implements Initializable {
 	     * These TextFields would have been used for the game status but with the current speed of the game the AI turn is practically invisible.
 	     */
 	    @FXML
-	    private TextField Status; //Field for status, kind of useless
+	    private TextField Status; 
 	    
 	    @FXML
-	    private TextField Turns; //Turns dont count correctly I dont know why.
+	    private TextField Winner;
+	    
+	    @FXML
+	    private TextField Turns; 
+	    
+	    @FXML
+	    private Button Reset;
 	    /**
 	     * These FXML declarations are methods that tell the game what to do when the buttons are interacted with in any fashion. 
 	     * The turn counter is ticked up, and if it is the players turn (pTurn=0), clicking the button alters the ownerID of the corresponding
@@ -400,11 +413,10 @@ public class MainController extends Application implements Initializable {
 	     */
 		public void buttonRedraw() //Redraws the text of all buttons and fields after the GameTile array has been modified. 
 		{	
-			turn+=1;
 			if(gameOver==0){
 			Status.setText(status);
 			}
-			Turns.setText(turncount);
+			Turns.setText(editTurnCount());
 			
 			if(board[0].getOID()==0)
 				TopLeft.setText("X");
@@ -482,6 +494,56 @@ public class MainController extends Application implements Initializable {
 			{
 				return AI.getName();
 			}
+		}
+		/*
+		 * Edits Turn Strings
+		 * 
+		 */
+		public String editTurnCount()
+		{
+			return turncount=String.format("Turns: %d",turn);
+		}
+		/**
+		 * Edits the winnerText for the Winner TextField.
+		 * @return string for winner.
+		 */
+		public String editWinner()
+		{
+			String winnerText="";
+			if(winner==0)
+			{
+				winnerText = Player.getName();
+			}
+			else if(winner==1)
+			{
+				winnerText = AI.getName();
+			}
+			else
+			{
+				return "It's a Draw!";
+			}
+			return String.format("%s wins!", winnerText);
+		}
+		/**
+		 * Resets the entire gamestate so that the game can be played repeatedly.
+		 */
+		@FXML
+		void resetGame()
+		{
+			for(int i=0;i<board.length;i++)
+			{
+				board[i].reset();
+			}
+			turn=0;
+			winner=-1;
+			gameOver=0;
+			pTurn=0;
+			lastTurn=1;
+			Status.setText("Game Start!");
+			Winner.setText("");
+			Turns.setText("Turns: 0");
+			buttonRedraw();
+			
 		}
 	
 }
