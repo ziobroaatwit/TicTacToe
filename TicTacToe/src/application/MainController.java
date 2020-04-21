@@ -58,8 +58,9 @@ public class MainController extends Application implements Initializable {
 	 * would have been leveraged for a better user experience.
 	 */
 	public int turn = 0; //counts turns
-	String status = String.format("It is %s's turn!",playerName()); //String for Status.
+	String status = String.format("Game Running..."); //String for Status.
 	String turncount = String.format("Turns: %d",turn); //String for turns, doesn't work.
+	int winner=-1; //winner storage
 	int gameOver=0; //Game over flag.
 	int pTurn=0; //Turn Flag.
 	int lastTurn=1; //Last turn flag.
@@ -113,7 +114,23 @@ public class MainController extends Application implements Initializable {
     public boolean getGameOver() //gets gameOver using the boardManipulator class
     {
     	boardManipulator current = new boardManipulator(board);
-    	return current.playerWon(lastTurn);
+    	return current.gameOver();
+    }
+    public void whoWon()
+    {
+    	boardManipulator current = new boardManipulator(board);
+    	if(current.playerWon(1)==true)
+    	{
+    		winner=1;
+    	}
+    	else if(current.playerWon(0)==true)
+    	{
+    		winner=0;
+    	}
+    	else
+    	{
+    		winner=-1;
+    	}
     }
     /**
      * statusCheck simply grabs the result of the getGameOver method and sets the gameOver flag if the game is infact, over.
@@ -123,6 +140,7 @@ public class MainController extends Application implements Initializable {
     	if(getGameOver()==true)
     	{
     		gameOver=1;
+    		Status.setText("Game Over!");
     	}
     }
 	/**
@@ -203,7 +221,7 @@ public class MainController extends Application implements Initializable {
 	    void displayTL(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    		turn++;//turn being taken
+	    		turn+=1;//turn being taken
 	    		//CPU=1, PLAYER=0
 	    		if (pTurn==1) 
 	    		{ 
@@ -224,7 +242,7 @@ public class MainController extends Application implements Initializable {
 	    void displayBL(ActionEvent event) {
 	    if(gameOver==0)
 	    {
-	    	turn++;//turn being taken
+	    	turn+=1;//turn being taken
 	    	
 	    	if (pTurn==1) {
 
@@ -244,7 +262,7 @@ public class MainController extends Application implements Initializable {
 	    void displayBM(ActionEvent event) {
 	    if(gameOver==0)
 	    {
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {
 	    		
@@ -263,7 +281,7 @@ public class MainController extends Application implements Initializable {
 	    void displayBR(ActionEvent event) {
 	    if(gameOver==0)
 	    {
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	if (pTurn==1) {
 	    	}else {
 
@@ -280,7 +298,7 @@ public class MainController extends Application implements Initializable {
 	    void displayM(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {
 	    	}else {
@@ -297,7 +315,7 @@ public class MainController extends Application implements Initializable {
 	    void displayML(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {
 
@@ -315,7 +333,7 @@ public class MainController extends Application implements Initializable {
 	    void displayMR(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {//if even(player 2 O's)
 	    	}else {
@@ -332,7 +350,7 @@ public class MainController extends Application implements Initializable {
 	    void displayTM(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {//if even(player 2 O's)
 	    	}else {
@@ -349,7 +367,7 @@ public class MainController extends Application implements Initializable {
 	    void displayTR(ActionEvent event) {
 	    	if(gameOver==0)
 	    	{
-	    	turn++;//turn 1 is being taken
+	    	turn+=1;//turn 1 is being taken
 	    	
 	    	if (pTurn==1) {
 	    	}else {
@@ -382,6 +400,7 @@ public class MainController extends Application implements Initializable {
 	     */
 		public void buttonRedraw() //Redraws the text of all buttons and fields after the GameTile array has been modified. 
 		{	
+			turn+=1;
 			if(gameOver==0){
 			Status.setText(status);
 			}

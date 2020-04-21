@@ -2,7 +2,13 @@ package application;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * boardManipulator is a class dedicated to any sort of board manipulation required. In this case it is suited for TicTacToe only
+ * but can be modified to encompass more tileBased games. 
+ *
+ * @author ziobroa
+ *
+ */
 public class boardManipulator
 {
 	GameTile[] board;
@@ -12,6 +18,10 @@ public class boardManipulator
 		this.board=s;
 		this.move=0;
 	}
+	/**
+	 * This method simply checks for whether the game should be over in any way. 
+	 * @return
+	 */
 	public boolean gameOver() //Returns the game over state given any player either real or computer has won or the board is out of moves to play.
 	{
 		return(playerWon(0)||playerWon(1)|| avInd(board).isEmpty());
