@@ -17,6 +17,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * The GameTile class represents every tile in the tic tac toe board. Since these tiles all contain their own IDs and data,
+ * this class could be used for Super Tic Tac Toe or games with many more tiles than just a 3x3 grid. 
+ *
+ * @author ziobroa
+ *
+ */
 public class GameTile 
 {
 	
@@ -24,7 +31,11 @@ public class GameTile
 	protected int switchID;
 	protected boolean isLocked;
 	protected String name;
-	
+	/**
+	 * Constructor
+	 * @param n
+	 * @param d
+	 */
 	public GameTile(String n,int d)
 	{
 		this.switchID=d;
@@ -32,6 +43,10 @@ public class GameTile
 		this.ownerID=-1;
 		this.isLocked=false;
 	}
+	/**
+	 * Changes ownerID and locks the tile once it is changed.
+	 * @param oid
+	 */
 	public void changeOID(int oid)
 	{
 		if(this.getLock()==false)
@@ -40,26 +55,47 @@ public class GameTile
 		}
 		lock();
 	}
+	/**
+	 * locks the tile
+	 */
 	public void lock()
 	{
 		this.isLocked=true;
 	}
+	/**
+	 * unlocks the tile
+	 */
 	public void unlock()
 	{
 		this.isLocked=false;
 	}
+	/**
+	 * returns whether the lock is closed.
+	 * @return
+	 */
 	public boolean getLock()
 	{
 		return this.isLocked;
 	}
+	/**
+	 * Returns the owner ID
+	 * @return
+	 */
 	public int getOID()
 	{
 		return this.ownerID;
 	}
+	/**
+	 * Returns the tileName, only for debugPrinting.
+	 * @return
+	 */
 	public String getName()
 	{
 		return this.name;
 	}
+	/**
+	 * Resets the tile for new games.
+	 */
 	public void reset()
 	{
 		this.ownerID=-1;

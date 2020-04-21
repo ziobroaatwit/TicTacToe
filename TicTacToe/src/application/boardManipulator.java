@@ -50,18 +50,7 @@ public class boardManipulator
 				avInd.add(i);
 			}
 		}
-		return avInd;	
-		
-	}
-	public boolean placeMove(int i,int playerID) //checks if the location in the board is empty, if it is not, returns false, then places the index in the ID of the player passed.
-	{
-		if(board[i].getOID()!=-1)
-		{
-			return false;
-		}
-		board[i].changeOID(playerID);
-			return true;
-
+		return avInd;		
 	}
 	public void decideMove()  //Currently just randomly generates moves. 
 	{
